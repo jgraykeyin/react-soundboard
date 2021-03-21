@@ -19,11 +19,12 @@ function SoundButton() {
     // This will change the speed/pitch of the sound
     const [playbackRate, setPlaybackRate] = React.useState(0.75);
 
+    // This will be used to change which sound effect we'll use
     const [soundToPlay, setSoundToPlay] = React.useState(fartLibrary[0])
 
 
+    // Play the sound effect
     const [playSnd] = useSound(
-        //fartLibrary[Math.floor(Math.random() * 3)],
         soundToPlay,
         { 
             playbackRate,
@@ -33,13 +34,18 @@ function SoundButton() {
     );
 
     const handleClick = () => {
-        console.log(Math.floor(Math.random() * 3))
+        // Min and max values for the pitch of the audio file
         const min = 0.5;
         const max = 2.1;
+
+        // Set a random pitch value
         let randomPitchNum = Math.random() * (max - min) + min;
         let randomPitch = randomPitchNum.toFixed(2);
+
+        // Create a variable to let us randomly select an audio file
         let soundIndex = Math.floor(Math.random() * 6)
         
+        // Set the pitch, select the audio clip and play it
         setPlaybackRate(randomPitch);
         setSoundToPlay(fartLibrary[soundIndex]);
         playSnd();
